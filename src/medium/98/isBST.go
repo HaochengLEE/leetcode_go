@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 type TreeNode struct {
@@ -12,10 +11,10 @@ type TreeNode struct {
 }
 
 func isValidBST(root *TreeNode) bool {
-	//flag:=true
-	//result:=isBST(root,flag)
+	flag:=true
+	result:=isBST(root,flag)
 	//限定最大最小值
-	result:=isBST2(root,math.Inf(-1),math.Inf(1))
+	//result:=isBST2(root,math.Inf(-1),math.Inf(1))
 	return result
 
 }
@@ -33,13 +32,13 @@ func isBST(root *TreeNode,flag bool) bool {
 		return true
 	}
 	//与左右值相比较
-	left:=root.Left
-	right:=root.Right
+	left:=*root.Left
+	right:=*root.Right
 	if left.Val>root.Val||right.Val<root.Val {
 		return false
 
 	}
-	return isBST(left,flag)&&isBST(right,flag)
+	return isBST(&left,flag)&&isBST(&right,flag)
 
 }
 func main() {
