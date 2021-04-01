@@ -15,4 +15,5 @@
 # vendor/
 .idea/*
 
+pkg/
 .DS_Store
