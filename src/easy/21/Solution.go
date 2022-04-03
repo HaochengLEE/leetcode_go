@@ -3,40 +3,41 @@ package main
 import "fmt"
 
 type ListNode struct {
-	Val int
+	Val  int
 	Next *ListNode
 }
+
 func mergeTwoLists(l1 *ListNode, l2 *ListNode) *ListNode {
 	//创建一个新的链表
-	node:=new(ListNode)
-	node.Next=new(ListNode)
+	node := new(ListNode)
+	node.Next = new(ListNode)
 	//存储链表的头节点
-	head:=node
-
+	head := node
 
 	//var node1 ListNode
 	//遍历链表
 	//判断值的大小，插入新的链表
-	for l1!=nil&&l2!=nil {
-		if l1.Val<=l2.Val {
-			head.Next=l1
-			l1=l1.Next
-		}else {
-			head.Next=l2
-			l2=l2.Next
+	for l1 != nil && l2 != nil {
+		if l1.Val <= l2.Val {
+			head.Next = l1
+			l1 = l1.Next
+		} else {
+			head.Next = l2
+			l2 = l2.Next
 		}
 
 	}
 
-	if l1==nil {
-		head.Next=l2
-	}else {
-		head.Next=l1
+	if l1 == nil {
+		head.Next = l2
+	} else {
+		head.Next = l1
 	}
 
 	return node.Next
 
 }
+
 func mergeTwoLists1(l1 *ListNode, l2 *ListNode) *ListNode {
 	if l1 == nil {
 		return l2
@@ -52,33 +53,39 @@ func mergeTwoLists1(l1 *ListNode, l2 *ListNode) *ListNode {
 	return l2
 }
 
+func printNode(node *ListNode) {
+	for node != nil {
+		fmt.Print(node)
+		node = node.Next
+	}
+}
 func main() {
-	node1,node2:=new(ListNode),new(ListNode)
-	node1.Next=new(ListNode)
-	head1:=node1
+	node1, node2 := new(ListNode), new(ListNode)
+	node1.Next = node2
+	node1.Val = 1
+	head1 := node1
+	//node1=node1.Next
 
-	for i:=0;i<6;i++{
-		node1.Val=i
-		node1.Next=new(ListNode)
-		fmt.Print(node1.Val)
-		node1=node1.Next
+	for i := 0; i < 6; i++ {
 
-
+		node2.Next = new(ListNode)
+		//fmt.Print(node1.Val)
+		node2 = node2.Next
+		node2.Val = i
 	}
+	printNode(head1)
 
-	for i:=0;i<6;i++{
+	//for i:=0;i<6;i++{
+	//
+	//	fmt.Print(head1.Next)
+	//}
 
-		fmt.Print(head1.Next)
-	}
+	//for i:=1;i<6;i++{
+	//	node2.Val=i
+	//	node2.Next=new(ListNode)
+	//	node2=node2.Next
+	//}
 
+	printNode(mergeTwoLists1(node1, node2))
 
-	for i:=1;i<6;i++{
-		node2.Val=i
-		node2.Next=new(ListNode)
-		node2=node2.Next
-	}
-
-	//fmt.Print(mergeTwoLists1(node1,node2))
-
-	
 }
